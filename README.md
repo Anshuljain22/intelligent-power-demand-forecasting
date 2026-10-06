@@ -10,7 +10,7 @@ The complete application is containerized using Docker and Docker Compose.
 
 
 
-\---
+---
 
 **## Working Project — Dashboard Screenshots**
 
@@ -40,7 +40,7 @@ The following screenshots were captured from the working application and demonst
 
 *Feature importance from the final XGBoost model and the end-to-end production forecasting pipeline.*
 
-\---
+---
 
 **## 1. Project Objective**
 
@@ -76,7 +76,7 @@ _>&#x20;_**\*\*Note:\*\***_&#x20;The assignment document states that the forecas
 
 
 
-\---
+---
 
 
 
@@ -142,7 +142,7 @@ _>&#x20;_**\*\*Note:\*\***_&#x20;The assignment document states that the forecas
 
 
 
-\---
+---
 
 
 
@@ -226,7 +226,7 @@ _>&#x20;_**\*\*Note:\*\***_&#x20;The assignment document states that the forecas
 
 
 
-\---
+---
 
 
 
@@ -290,7 +290,7 @@ The historical dataset does not contain observations for 2017-12-31. The product
 
 
 
-\---
+---
 
 
 
@@ -364,7 +364,7 @@ The notebook covers:
 
 
 
-\---
+---
 
 
 
@@ -420,7 +420,7 @@ This avoids artificially removing legitimate high-demand periods from the traini
 
 
 
-\---
+---
 
 
 
@@ -496,7 +496,7 @@ data/production/dhanbad_forecast_weather_2017-12-31.csv
 
 
 
-\---
+---
 
 
 
@@ -544,7 +544,7 @@ The project uses localized Jharkhand-related holiday information rather than rel
 
 
 
-\---
+---
 
 
 
@@ -730,7 +730,7 @@ The final production feature set uses only information available before the pred
 
 
 
-\---
+---
 
 
 
@@ -798,7 +798,7 @@ No future observations were randomly mixed into the training data.
 
 
 
-\---
+---
 
 
 
@@ -822,7 +822,7 @@ These baselines provide reference performance for evaluating the machine learnin
 
 
 
-\---
+---
 
 
 
@@ -858,7 +858,7 @@ XGBoost was selected for the final production model based on its validation perf
 
 
 
-\---
+---
 
 
 
@@ -918,7 +918,7 @@ models/feature_metadata.pkl
 
 
 
-\---
+---
 
 
 
@@ -970,7 +970,7 @@ The later test period shows some distribution shift compared with the validation
 
 
 
-\---
+---
 
 
 
@@ -1020,7 +1020,7 @@ Weather and holiday features are retained as required external contextual featur
 
 
 
-\---
+---
 
 
 
@@ -1072,7 +1072,7 @@ The model therefore generates a complete 24-hour forecast while using predicted 
 
 
 
-\---
+---
 
 
 
@@ -1132,7 +1132,7 @@ notebooks/02_production_feature_testing.ipynb
 
 
 
-\---
+---
 
 
 
@@ -1248,7 +1248,7 @@ http\://localhost:8000/docs
 
 
 
-\---
+---
 
 
 
@@ -1306,7 +1306,7 @@ The dashboard provides:
 
 
 
-\---
+---
 
 
 
@@ -1408,7 +1408,7 @@ Project-1/
 
 
 
-\---
+---
 
 
 
@@ -1540,7 +1540,7 @@ docker compose down
 
 
 
-\---
+---
 
 
 
@@ -1588,7 +1588,7 @@ The forecast should contain:
 
 
 
-\---
+---
 
 
 
@@ -1676,7 +1676,7 @@ It validates the production feature-generation pipeline and confirms feature par
 
 
 
-\---
+---
 
 
 
@@ -1740,7 +1740,7 @@ The saved model allows the backend to run without retraining the model.
 
 
 
-\---
+---
 
 
 
@@ -1792,7 +1792,7 @@ During the 24-hour forecast, previously predicted demand values are appended to 
 
 
 
-\---
+---
 
 
 
@@ -1816,7 +1816,7 @@ During the 24-hour forecast, previously predicted demand values are appended to 
 
 
 
-\---
+---
 
 
 
@@ -1894,7 +1894,7 @@ During the 24-hour forecast, previously predicted demand values are appended to 
 
 
 
-\---
+---
 
 
 
@@ -1988,7 +1988,7 @@ During the 24-hour forecast, previously predicted demand values are appended to 
 
 
 
-\---
+---
 
 
 
@@ -2032,7 +2032,7 @@ This repository contains the components required for the assignment submission:
 
 
 
-\---
+---
 
 
 
