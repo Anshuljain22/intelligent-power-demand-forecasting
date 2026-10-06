@@ -1,20 +1,14 @@
-**# Intelligent Power Demand Forecasting System**
-
-
-
+# Intelligent Power Demand Forecasting System
 An end-to-end electricity demand forecasting system for Dhanbad, Jharkhand. The system processes historical electricity consumption data, integrates Dhanbad-specific weather and localized holiday information, performs feature engineering, trains and evaluates forecasting models, and provides a production-ready 24-hour forecast through a FastAPI backend and Next.js dashboard.
-
 
 
 The complete application is containerized using Docker and Docker Compose.
 
-
-
 ---
 
-**## Working Project — Dashboard Screenshots**
+## Working Project — Dashboard Screenshots
 
-The following screenshots were captured from the working application and demonstrate the deployed dashboard, forecast visualization, weather and localized holiday context, model evaluation, feature importance, and production forecasting pipeline.
+The following screenshots were captured from the working application and demonstrate the interactive dashboard, 24-hour demand forecasting, weather and localized holiday context, model evaluation, feature importance, and production forecasting pipeline.
 
 ### 1. Dashboard Overview
 
@@ -40,117 +34,101 @@ The following screenshots were captured from the working application and demonst
 
 *Feature importance from the final XGBoost model and the end-to-end production forecasting pipeline.*
 
+
+
 ---
 
-**## 1. Project Objective**
 
-
-
+## 1. Project Objective
 The objective of this project is to develop a robust short-term electricity demand forecasting system.
-
 
 
 The historical electricity consumption data is available at 10-minute intervals. The forecasting system produces electricity demand forecasts at 30-minute intervals for the next 24 hours.
 
 
+### Forecast configuration
+- Location: Dhanbad, Jharkhand
 
-**### Forecast configuration**
+- Original data resolution: 10 minutes
 
+- Forecast resolution: 30 minutes
 
+- Forecast horizon: 24 hours
 
-\- Location: Dhanbad, Jharkhand
+- Forecast points: 48
 
-\- Original data resolution: 10 minutes
-
-\- Forecast resolution: 30 minutes
-
-\- Forecast horizon: 24 hours
-
-\- Forecast points: 48
-
-\- Forecast target: Total electricity demand
+- Forecast target: Total electricity demand
 
 
-
-_>&#x20;_**\*\*Note:\*\***_&#x20;The assignment document states that the forecast should use 30-minute blocks, which results in 48 blocks for 24 hours. One section of the assignment mentions 96 blocks for 24 hours. This implementation follows the stated 30-minute resolution and therefore produces 48 forecast points._
-
+_>&#x20;_**Note:**_&#x20;The assignment document states that the forecast should use 30-minute blocks, which results in 48 blocks for 24 hours. One section of the assignment mentions 96 blocks for 24 hours. This implementation follows the stated 30-minute resolution and therefore produces 48 forecast points._
 
 
 ---
 
 
+## 2. Key Features
+- Exploratory Data Analysis (EDA)
 
-**## 2. Key Features**
+- Electricity demand data cleaning
 
+- Missing-value and duplicate analysis
 
+- Outlier investigation
 
-\- Exploratory Data Analysis (EDA)
+- Cross-feeder demand analysis
 
-\- Electricity demand data cleaning
+- Hourly demand analysis
 
-\- Missing-value and duplicate analysis
+- Day-of-week analysis
 
-\- Outlier investigation
+- Weekday/weekend analysis
 
-\- Cross-feeder demand analysis
+- Monthly and seasonal analysis
 
-\- Hourly demand analysis
+- Dhanbad-specific weather integration
 
-\- Day-of-week analysis
+- Localized Jharkhand/Dhanbad holiday integration
 
-\- Weekday/weekend analysis
+- Calendar and cyclical time features
 
-\- Monthly and seasonal analysis
+- Historical demand lag features
 
-\- Dhanbad-specific weather integration
+- Rolling statistical features
 
-\- Localized Jharkhand/Dhanbad holiday integration
+- Chronological train/validation/test splitting
 
-\- Calendar and cyclical time features
+- Baseline forecasting models
 
-\- Historical demand lag features
+- Multiple machine learning model comparisons
 
-\- Rolling statistical features
+- XGBoost hyperparameter tuning
 
-\- Chronological train/validation/test splitting
+- Final XGBoost model
 
-\- Baseline forecasting models
+- Recursive 24-hour forecasting
 
-\- Multiple machine learning model comparisons
+- Production feature parity validation
 
-\- XGBoost hyperparameter tuning
+- FastAPI backend
 
-\- Final XGBoost model
+- Next.js interactive dashboard
 
-\- Recursive 24-hour forecasting
+- Demand forecast visualization
 
-\- Production feature parity validation
+- Weather visualization
 
-\- FastAPI backend
+- Holiday information
 
-\- Next.js interactive dashboard
+- Docker containerization
 
-\- Demand forecast visualization
-
-\- Weather visualization
-
-\- Holiday information
-
-\- Docker containerization
-
-\- Docker Compose orchestration
-
+- Docker Compose orchestration
 
 
 ---
 
 
-
-**## 3. System Architecture**
-
-
-
-\`\`\`text
+## 3. System Architecture
+```text
 
                     Historical Electricity Data
 
@@ -222,96 +200,73 @@ _>&#x20;_**\*\*Note:\*\***_&#x20;The assignment document states that the forecas
 
                          Docker
 
-\`\`\`
-
+```
 
 
 ---
 
 
-
-**## 4. Dataset**
-
-
-
+## 4. Dataset
 The primary electricity consumption dataset provided for the project is:
 
 
-
-\`\`\`text
+```text
 
 data/raw/Utility_consumption.csv
 
-\`\`\`
-
+```
 
 
 The dataset contains electricity consumption measurements from three 132 kV feeders:
 
 
+- \`F1_132KV_PowerConsumption\`
 
-\- \`F1_132KV_PowerConsumption\`
+- \`F2_132KV_PowerConsumption\`
 
-\- \`F2_132KV_PowerConsumption\`
-
-\- \`F3_132KV_PowerConsumption\`
-
+- \`F3_132KV_PowerConsumption\`
 
 
 The total electricity demand is calculated as:
 
 
-
-\`\`\`text
+```text
 
 Total_Load = F1 + F2 + F3
 
-\`\`\`
+```
 
 
+### Dataset characteristics
+- Original resolution: 10 minutes
 
-**### Dataset characteristics**
+- Coverage: 2017-01-01 to 2017-12-30
 
+- Number of original rows: 52,416
 
+- Number of feeders: 3
 
-\- Original resolution: 10 minutes
-
-\- Coverage: 2017-01-01 to 2017-12-30
-
-\- Number of original rows: 52,416
-
-\- Number of feeders: 3
-
-\- Forecast target: \`Total_Load\`
-
+- Forecast target: \`Total_Load\`
 
 
 The historical dataset does not contain observations for 2017-12-31. The production demonstration forecast therefore uses historical demand available before the forecast period together with the prepared forecast-day weather data.
 
 
-
 ---
 
 
-
-**## 5. Exploratory Data Analysis**
-
-
-
+## 5. Exploratory Data Analysis
 The complete EDA and modelling workflow is documented in:
 
 
-
-\`\`\`text
+```text
 
 notebooks/01_power_demand_forecasting.ipynb
 
-\`\`\`
-
+```
 
 
 The notebook covers:
-
 
 
 1\. Dataset inspection
@@ -363,98 +318,76 @@ The notebook covers:
 24\. Feature importance analysis
 
 
-
 ---
 
 
-
-**## 6. Data Cleaning and Outlier Handling**
-
-
-
+## 6. Data Cleaning and Outlier Handling
 The dataset was checked for:
 
 
+- Invalid timestamps
 
-\- Invalid timestamps
+- Missing timestamps
 
-\- Missing timestamps
+- Duplicate timestamps
 
-\- Duplicate timestamps
+- Missing values
 
-\- Missing values
+- Demand distribution anomalies
 
-\- Demand distribution anomalies
-
-\- Feeder-level outliers
-
+- Feeder-level outliers
 
 
 IQR analysis identified a number of high-demand observations, particularly in feeder F3.
 
 
-
 These observations were not automatically removed. The potentially anomalous observations were investigated using temporal and cross-feeder analysis.
-
 
 
 The analysis showed that many high F3 values occurred together with elevated demand in the other feeders. Therefore, these observations could represent genuine system-wide demand peaks rather than isolated measurement errors.
 
 
-
 The final approach was:
 
 
+- Use IQR as an anomaly screening method.
 
-\- Use IQR as an anomaly screening method.
+- Investigate suspicious observations.
 
-\- Investigate suspicious observations.
+- Compare feeder behaviour.
 
-\- Compare feeder behaviour.
-
-\- Retain synchronized demand peaks when they appear to represent genuine system behaviour.
-
+- Retain synchronized demand peaks when they appear to represent genuine system behaviour.
 
 
 This avoids artificially removing legitimate high-demand periods from the training data.
 
 
-
 ---
 
 
-
-**## 7. Weather Integration**
-
-
-
+## 7. Weather Integration
 The assignment requires weather information specific to Dhanbad, Jharkhand.
-
 
 
 Dhanbad weather data was obtained using the Open-Meteo Historical Weather API.
 
 
-
 The following weather variables were integrated:
 
 
+- Temperature
 
-\- Temperature
+- Relative humidity
 
-\- Relative humidity
+- Cloud cover
 
-\- Cloud cover
-
-\- Wind speed
-
+- Wind speed
 
 
 The resulting columns are:
 
 
-
-\`\`\`text
+```text
 
 Dhanbad_Temperature
 
@@ -464,69 +397,55 @@ Dhanbad_CloudCover
 
 Dhanbad_WindSpeed
 
-\`\`\`
-
+```
 
 
 Historical weather observations were converted to 30-minute resolution through time interpolation.
 
 
-
 The integrated historical dataset is:
 
 
-
-\`\`\`text
+```text
 
 data/processed/integrated_demand_weather_holidays.csv
 
-\`\`\`
-
+```
 
 
 The prepared production forecast weather file is:
 
 
-
-\`\`\`text
+```text
 
 data/production/dhanbad_forecast_weather_2017-12-31.csv
 
-\`\`\`
-
+```
 
 
 ---
 
 
-
-**## 8. Holiday Integration**
-
-
-
+## 8. Holiday Integration
 Localized holiday information was integrated because electricity demand patterns can differ on public holidays and region-specific holidays.
-
 
 
 The holiday information includes:
 
 
+- Holiday name
 
-\- Holiday name
+- Holiday type
 
-\- Holiday type
+- Scope
 
-\- Scope
-
-\- Public holiday indicator
-
+- Public holiday indicator
 
 
 The integrated columns are:
 
 
-
-\`\`\`text
+```text
 
 Holiday_Name
 
@@ -536,31 +455,21 @@ Scope
 
 Is_Public_Holiday
 
-\`\`\`
-
+```
 
 
 The project uses localized Jharkhand-related holiday information rather than relying only on a generic national calendar.
 
 
-
 ---
 
 
-
-**## 9. Feature Engineering**
-
-
-
+## 9. Feature Engineering
 The final production model uses 34 features.
 
 
-
-**### Calendar and time features**
-
-
-
-\`\`\`text
+### Calendar and time features
+```text
 
 hour
 
@@ -580,15 +489,11 @@ is_weekend
 
 time_slot
 
-\`\`\`
+```
 
 
-
-**### Cyclical features**
-
-
-
-\`\`\`text
+### Cyclical features
+```text
 
 time_slot_sin
 
@@ -602,27 +507,19 @@ day_of_year_sin
 
 day_of_year_cos
 
-\`\`\`
+```
 
 
-
-**### Holiday feature**
-
-
-
-\`\`\`text
+### Holiday feature
+```text
 
 is_holiday
 
-\`\`\`
+```
 
 
-
-**### Weather features**
-
-
-
-\`\`\`text
+### Weather features
+```text
 
 Dhanbad_Temperature
 
@@ -632,27 +529,19 @@ Dhanbad_CloudCover
 
 Dhanbad_WindSpeed
 
-\`\`\`
+```
 
 
-
-**### Weather interaction**
-
-
-
-\`\`\`text
+### Weather interaction
+```text
 
 Temperature_Humidity
 
-\`\`\`
+```
 
 
-
-**### Historical demand features**
-
-
-
-\`\`\`text
+### Historical demand features
+```text
 
 lag_1
 
@@ -666,15 +555,13 @@ lag_96
 
 lag_336
 
-\`\`\`
-
+```
 
 
 These correspond to:
 
 
-
-\`\`\`text
+```text
 
 lag_1   = 30 minutes
 
@@ -688,15 +575,11 @@ lag_96  = 48 hours
 
 lag_336 = 7 days
 
-\`\`\`
+```
 
 
-
-**### Rolling features**
-
-
-
-\`\`\`text
+### Rolling features
+```text
 
 rolling_mean_1h
 
@@ -710,43 +593,31 @@ rolling_std_2h
 
 rolling_std_24h
 
-\`\`\`
+```
 
 
-
-**### Historical change**
-
-
-
-\`\`\`text
+### Historical change
+```text
 
 historical_change_30min
 
-\`\`\`
-
+```
 
 
 The final production feature set uses only information available before the prediction timestamp in order to prevent target leakage.
 
 
-
 ---
 
 
-
-**## 10. Data Splitting**
-
-
-
+## 10. Data Splitting
 A chronological split was used because this is a time-series forecasting problem.
-
 
 
 The model-ready data was divided into:
 
 
-
-\`\`\`text
+```text
 
 Training:   70%
 
@@ -754,123 +625,89 @@ Validation: 15%
 
 Testing:    15%
 
-\`\`\`
+```
 
 
-
-**### Training**
-
-
-
-\`\`\`text
+### Training
+```text
 
 2017-01-08 to 2017-09-13
 
-\`\`\`
+```
 
 
-
-**### Validation**
-
-
-
-\`\`\`text
+### Validation
+```text
 
 2017-09-14 to 2017-11-05
 
-\`\`\`
+```
 
 
-
-**### Test**
-
-
-
-\`\`\`text
+### Test
+```text
 
 2017-11-06 to 2017-12-30
 
-\`\`\`
-
+```
 
 
 No future observations were randomly mixed into the training data.
 
 
-
 ---
 
 
-
-**## 11. Baseline Models**
-
-
-
+## 11. Baseline Models
 The following simple forecasting baselines were evaluated:
 
 
+- Previous 30-minute demand
 
-\- Previous 30-minute demand
+- Previous-day demand
 
-\- Previous-day demand
-
-\- Previous-week demand
-
+- Previous-week demand
 
 
 These baselines provide reference performance for evaluating the machine learning models.
 
 
-
 ---
 
 
-
-**## 12. Model Comparison**
-
-
-
+## 12. Model Comparison
 Multiple forecasting approaches were evaluated:
 
 
+- Random Forest
 
-\- Random Forest
+- HistGradientBoosting
 
-\- HistGradientBoosting
+- Extra Trees
 
-\- Extra Trees
+- LightGBM
 
-\- LightGBM
+- CatBoost
 
-\- CatBoost
+- LSTM
 
-\- LSTM
-
-\- XGBoost
-
+- XGBoost
 
 
 The experiments showed that tree-based gradient boosting approaches were effective for the engineered tabular time-series features.
 
 
-
 XGBoost was selected for the final production model based on its validation performance and suitability for the feature structure.
-
 
 
 ---
 
 
-
-**## 13. Final XGBoost Model**
-
-
-
+## 13. Final XGBoost Model
 The final model uses the following configuration:
 
 
-
-\`\`\`text
+```text
 
 n_estimators       = 620
 
@@ -890,46 +727,34 @@ reg_alpha          = 0.664386
 
 reg_lambda         = 1.620612
 
-\`\`\`
-
+```
 
 
 The trained model is stored at:
 
 
-
-\`\`\`text
+```text
 
 models/final_xgboost_model.pkl
 
-\`\`\`
-
+```
 
 
 The feature metadata is stored at:
 
 
-
-\`\`\`text
+```text
 
 models/feature_metadata.pkl
 
-\`\`\`
-
+```
 
 
 ---
 
 
-
-**## 14. Model Performance**
-
-
-
-**### Validation Performance**
-
-
-
+## 14. Model Performance
+### Validation Performance
 \| Metric | XGBoost |
 
 \|---|---:|
@@ -943,11 +768,7 @@ models/feature_metadata.pkl
 \| R² | 0.99537 |
 
 
-
-**### Final Test Performance**
-
-
-
+### Final Test Performance
 \| Metric | XGBoost |
 
 \|---|---:|
@@ -961,32 +782,23 @@ models/feature_metadata.pkl
 \| R² | 0.99217 |
 
 
-
 The test set was evaluated after model selection and was not used for hyperparameter tuning.
-
 
 
 The later test period shows some distribution shift compared with the validation period, but the final model maintains strong forecasting performance.
 
 
-
 ---
 
 
-
-**## 15. Feature Importance**
-
-
-
+## 15. Feature Importance
 The most influential features in the final XGBoost model were primarily historical demand features.
-
 
 
 The leading features include:
 
 
-
-\`\`\`text
+```text
 
 lag_48
 
@@ -1008,35 +820,26 @@ time_slot
 
 rolling_mean_6h
 
-\`\`\`
-
+```
 
 
 The strong contribution of lag features is expected for short-term electricity demand forecasting because recent and periodic historical demand contains significant information about future demand.
 
 
-
 Weather and holiday features are retained as required external contextual features.
-
 
 
 ---
 
 
-
-**## 16. Recursive 24-Hour Forecasting**
-
-
-
+## 16. Recursive 24-Hour Forecasting
 The production API generates the 24-hour forecast recursively.
-
 
 
 The process is:
 
 
-
-\`\`\`text
+```text
 
 Historical actual demand
 
@@ -1064,103 +867,77 @@ Repeat
 
 48 predictions
 
-\`\`\`
-
+```
 
 
 The model therefore generates a complete 24-hour forecast while using predicted values for future lag features where actual future demand is unavailable.
 
 
-
 ---
 
 
-
-**## 17. Production Feature Validation**
-
-
-
+## 17. Production Feature Validation
 Production feature generation was tested against the saved training, validation, and test feature datasets.
-
 
 
 Six timestamps were used for feature parity testing.
 
 
-
 All tested timestamps passed.
-
 
 
 The maximum observed numerical difference was:
 
 
-
-\`\`\`text
+```text
 
 2.867819e-08
 
-\`\`\`
-
+```
 
 
 The validation tolerance was:
 
 
-
-\`\`\`text
+```text
 
 1e-6
 
-\`\`\`
-
+```
 
 
 Therefore, the production feature-generation logic matches the training feature-generation logic within floating-point tolerance.
 
 
-
 The production validation notebook is:
 
 
-
-\`\`\`text
+```text
 
 notebooks/02_production_feature_testing.ipynb
 
-\`\`\`
-
+```
 
 
 ---
 
 
-
-**## 18. Backend API**
-
-
-
+## 18. Backend API
 The backend is implemented using FastAPI.
 
 
-
-**### Health Check**
-
-
-
-\`\`\`http
+### Health Check
+```http
 
 GET /health
 
-\`\`\`
-
+```
 
 
 Example response:
 
 
-
-\`\`\`json
+```json
 
 {
 
@@ -1172,59 +949,48 @@ Example response:
 
 }
 
-\`\`\`
+```
 
 
-
-**### 24-Hour Forecast**
-
-
-
-\`\`\`http
+### 24-Hour Forecast
+```http
 
 GET /forecast?datetime=2017-12-31%2000:00:00
 
-\`\`\`
-
+```
 
 
 The forecast endpoint returns:
 
 
+- Forecast date
 
-\- Forecast date
+- Forecast start
 
-\- Forecast start
+- Forecast end
 
-\- Forecast end
+- Forecast interval
 
-\- Forecast interval
+- Number of forecast points
 
-\- Number of forecast points
+- Holiday information
 
-\- Holiday information
+- Predicted electricity demand
 
-\- Predicted electricity demand
+- Temperature
 
-\- Temperature
+- Humidity
 
-\- Humidity
+- Cloud cover
 
-\- Cloud cover
-
-\- Wind speed
-
+- Wind speed
 
 
 For a 24-hour forecast at 30-minute resolution, the API returns 48 points.
 
 
-
-**### Additional Endpoints**
-
-
-
-\`\`\`text
+### Additional Endpoints
+```text
 
 /predict
 
@@ -1232,89 +998,74 @@ For a 24-hour forecast at 30-minute resolution, the API returns 48 points.
 
 /prediction-context
 
-\`\`\`
-
+```
 
 
 Interactive API documentation is available through:
 
 
-
-\`\`\`text
+```text
 
 http\://localhost:8000/docs
 
-\`\`\`
-
+```
 
 
 ---
 
 
-
-**## 19. Frontend Dashboard**
-
-
-
+## 19. Frontend Dashboard
 The frontend is built using:
 
 
+- Next.js
 
-\- Next.js
+- React
 
-\- React
+- TypeScript
 
-\- TypeScript
+- Recharts
 
-\- Recharts
-
-\- Tailwind CSS
-
+- Tailwind CSS
 
 
 The dashboard provides:
 
 
+- Date-based forecast generation
 
-\- Date-based forecast generation
+- 24-hour demand forecast chart
 
-\- 24-hour demand forecast chart
+- Weather visualization
 
-\- Weather visualization
+- Temperature information
 
-\- Temperature information
+- Humidity information
 
-\- Humidity information
+- Cloud cover information
 
-\- Cloud cover information
+- Holiday information
 
-\- Holiday information
+- Peak demand
 
-\- Peak demand
+- Minimum demand
 
-\- Minimum demand
+- Average demand
 
-\- Average demand
+- Historical demand analysis
 
-\- Historical demand analysis
+- Model performance
 
-\- Model performance
+- Feature importance
 
-\- Feature importance
-
-\- Forecast methodology
-
+- Forecast methodology
 
 
 ---
 
 
-
-**## 20. Project Structure**
-
-
-
-\`\`\`text
+## 20. Project Structure
+```text
 
 Project-1/
 
@@ -1404,179 +1155,125 @@ Project-1/
 
 └── .gitignore
 
-\`\`\`
-
+```
 
 
 ---
 
 
-
-**## 21. Running the Project with Docker**
-
-
-
+## 21. Running the Project with Docker
 Docker is the recommended method for running the complete application.
 
 
-
-**### Requirements**
-
-
-
+### Requirements
 Install:
 
 
+- Docker Desktop
 
-\- Docker Desktop
-
-\- Git
-
+- Git
 
 
 Python and Node.js are not required separately when using the Docker setup.
 
 
-
-**### Clone the repository**
-
-
-
-\`\`\`bash
+### Clone the repository
+```bash
 
 git clone \<YOUR_GITHUB_REPOSITORY_URL>
 
 cd Project-1
 
-\`\`\`
+```
 
 
-
-**### Start the application**
-
-
-
-\`\`\`bash
+### Start the application
+```bash
 
 docker compose up --build
 
-\`\`\`
-
+```
 
 
 The first build may take several minutes because the backend installs the machine learning dependencies.
 
 
-
-**### Run in detached mode**
-
-
-
-\`\`\`bash
+### Run in detached mode
+```bash
 
 docker compose up -d --build
 
-\`\`\`
+```
 
 
-
-**### Check containers**
-
-
-
-\`\`\`bash
+### Check containers
+```bash
 
 docker compose ps
 
-\`\`\`
+```
 
 
-
-**### Access the frontend**
-
-
-
-\`\`\`text
+### Access the frontend
+```text
 
 http\://localhost:3000
 
-\`\`\`
+```
 
 
-
-**### Access the backend**
-
-
-
-\`\`\`text
+### Access the backend
+```text
 
 http\://localhost:8000
 
-\`\`\`
+```
 
 
-
-**### Access FastAPI documentation**
-
-
-
-\`\`\`text
+### Access FastAPI documentation
+```text
 
 http\://localhost:8000/docs
 
-\`\`\`
+```
 
 
-
-**### Stop the application**
-
-
-
-\`\`\`bash
+### Stop the application
+```bash
 
 docker compose down
 
-\`\`\`
-
+```
 
 
 ---
 
 
-
-**## 22. Backend Verification**
-
-
-
+## 22. Backend Verification
 After starting Docker, verify the backend:
 
 
-
-\`\`\`bash
+```bash
 
 curl http\://localhost:8000/health
 
-\`\`\`
-
+```
 
 
 Test the 24-hour forecast:
 
 
-
-\`\`\`bash
+```bash
 
 curl "http\://localhost:8000/forecast?datetime=2017-12-31%2000:00:00"
 
-\`\`\`
-
+```
 
 
 The forecast should contain:
 
 
-
-\`\`\`text
+```text
 
 48 forecast points
 
@@ -1584,35 +1281,27 @@ The forecast should contain:
 
 00:00 through 23:30
 
-\`\`\`
-
+```
 
 
 ---
 
 
-
-**## 23. Running the Notebooks**
-
-
-
+## 23. Running the Notebooks
 The main notebook is:
 
 
-
-\`\`\`text
+```text
 
 notebooks/01_power_demand_forecasting.ipynb
 
-\`\`\`
-
+```
 
 
 It documents:
 
 
-
-\`\`\`text
+```text
 
 Data
 
@@ -1656,150 +1345,103 @@ Final Evaluation
 
 Feature Importance
 
-\`\`\`
-
+```
 
 
 The production testing notebook is:
 
 
-
-\`\`\`text
+```text
 
 notebooks/02_production_feature_testing.ipynb
 
-\`\`\`
-
+```
 
 
 It validates the production feature-generation pipeline and confirms feature parity with the saved modelling datasets.
 
 
-
 ---
 
 
-
-**## 24. Reproducibility**
-
-
-
+## 24. Reproducibility
 The provided mock dataset is included in the repository:
 
 
-
-\`\`\`text
+```text
 
 data/raw/Utility_consumption.csv
 
-\`\`\`
-
+```
 
 
 Processed datasets are also included.
 
 
-
 The trained model artifact is included:
 
 
-
-\`\`\`text
+```text
 
 models/final_xgboost_model.pkl
 
-\`\`\`
-
+```
 
 
 The feature metadata is included:
 
 
-
-\`\`\`text
+```text
 
 models/feature_metadata.pkl
 
-\`\`\`
-
+```
 
 
 The production forecast weather data is included:
 
 
-
-\`\`\`text
+```text
 
 data/production/dhanbad_forecast_weather_2017-12-31.csv
 
-\`\`\`
-
+```
 
 
 The saved model allows the backend to run without retraining the model.
 
 
-
 ---
 
 
-
-**## 25. Data Handling Decisions**
-
-
-
-**### Outliers**
-
-
-
+## 25. Data Handling Decisions
+### Outliers
 Potential outliers were investigated rather than automatically removed because synchronized feeder peaks may represent genuine demand events.
 
 
-
-**### Missing values**
-
-
-
+### Missing values
 The data was checked for missing timestamps and values. Weather observations were converted to 30-minute resolution through interpolation.
 
 
-
-**### Time-series splitting**
-
-
-
+### Time-series splitting
 Random splitting was avoided to prevent temporal leakage.
 
 
-
-**### Target leakage**
-
-
-
+### Target leakage
 Features that used the current target value were excluded from the final production feature set.
-
 
 
 Only historical information available before the prediction timestamp is used.
 
 
-
-**### Recursive forecasting**
-
-
-
+### Recursive forecasting
 During the 24-hour forecast, previously predicted demand values are appended to the recursive history and used to generate future lag and rolling features.
-
 
 
 ---
 
 
-
-**## 26. Limitations**
-
-
-
+## 26. Limitations
 1\. The historical electricity dataset covers approximately one year.
 
 2\. The test period contains a limited number of localized holiday observations.
@@ -1815,94 +1457,65 @@ During the 24-hour forecast, previously predicted demand values are appended to 
 7\. The assignment contains an inconsistency between the stated 30-minute resolution and the mention of 96 blocks. This implementation follows the 30-minute resolution and produces 48 forecast points for 24 hours.
 
 
-
 ---
 
 
+## 27. Technology Stack
+### Data Science
+- Python
 
-**## 27. Technology Stack**
+- Pandas
 
+- NumPy
 
+- Scikit-learn
 
-**### Data Science**
+- XGBoost
 
+- Matplotlib
 
-
-\- Python
-
-\- Pandas
-
-\- NumPy
-
-\- Scikit-learn
-
-\- XGBoost
-
-\- Matplotlib
-
-\- Jupyter Notebook
+- Jupyter Notebook
 
 
+### Backend
+- FastAPI
 
-**### Backend**
+- Uvicorn
 
+- Pydantic
 
+- Joblib
 
-\- FastAPI
-
-\- Uvicorn
-
-\- Pydantic
-
-\- Joblib
-
-\- XGBoost
+- XGBoost
 
 
+### Frontend
+- Next.js
 
-**### Frontend**
+- React
 
+- TypeScript
 
+- Recharts
 
-\- Next.js
-
-\- React
-
-\- TypeScript
-
-\- Recharts
-
-\- Tailwind CSS
+- Tailwind CSS
 
 
+### Deployment
+- Docker
 
-**### Deployment**
-
-
-
-\- Docker
-
-\- Docker Compose
+- Docker Compose
 
 
-
-**### Weather Data**
-
-
-
-\- Open-Meteo Historical Weather API
-
+### Weather Data
+- Open-Meteo Historical Weather API
 
 
 ---
 
 
-
-**## 28. Final End-to-End Workflow**
-
-
-
-\`\`\`text
+## 28. Final End-to-End Workflow
+```text
 
                   Utility Consumption Data
 
@@ -1984,71 +1597,56 @@ During the 24-hour forecast, previously predicted demand values are appended to 
 
                          Docker
 
-\`\`\`
-
+```
 
 
 ---
 
 
-
-**## 29. Submission Contents**
-
-
-
+## 29. Submission Contents
 This repository contains the components required for the assignment submission:
 
 
+- Jupyter notebook documenting EDA
 
-\- Jupyter notebook documenting EDA
+- Data cleaning workflow
 
-\- Data cleaning workflow
+- Feature engineering
 
-\- Feature engineering
+- Model comparison and justification
 
-\- Model comparison and justification
+- Model validation
 
-\- Model validation
+- Production feature validation
 
-\- Production feature validation
+- Backend API
 
-\- Backend API
+- Frontend visualization dashboard
 
-\- Frontend visualization dashboard
+- Docker configuration
 
-\- Docker configuration
+- Comprehensive README
 
-\- Comprehensive README
+- Provided \`Utility_consumption.csv\` mock data
 
-\- Provided \`Utility_consumption.csv\` mock data
+- Processed datasets
 
-\- Processed datasets
+- Saved model artifact
 
-\- Saved model artifact
+- Feature metadata
 
-\- Feature metadata
-
-\- Production forecast weather data
-
+- Production forecast weather data
 
 
 ---
 
 
-
-**## 30. Author**
-
-
-
+## 30. Author
 Developed as an Intelligent Power Demand Forecasting project for the internship assignment.
 
 
-
-**### Project Configuration**
-
-
-
-\`\`\`text
+### Project Configuration
+```text
 
 Location: Dhanbad, Jharkhand
 
@@ -2066,4 +1664,4 @@ Frontend: Next.js
 
 Deployment: Docker Compose
 
-\`\`\`
+```
